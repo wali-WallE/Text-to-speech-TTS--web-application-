@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple TTS App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app-header">
+            <h1 class="app-title">Text to Speech!</h1>
+            <p class="app-subtitle">Enter text to convert to speech</p>
+        </header>
+
+        <main class="app-main">
+        <section class="area card">
+            <label class="field">
+            <span class="field-label">Text</span>
+            <textarea id="text-input" class="field-control field__control--textarea" placeholder="Enter text to convert to speech" rows="5"></textarea>
+        </label>
+        <div class="grid">
+        <label class="field">
+            <span class="field-label">Voice
+            </span>
+            <select class="field-control" id="voice-select">
+            </select>
+            <span class="field-hint" id="voice-hint">Voices depend on your browser settings</span>
+        </label>
+        
+        <label class="field">
+
+            <span class="field-label">Rate
+            <span class="field-value" id="rate-value">1.0x</span>
+            </span>
+            <input type="range" class="field__control field__control--range" id="rate" min="0.5" max="2" step="0.25" value="1">
+        </label>
+
+        <label class="field">
+            <span class="field-label">Pitch
+            <span class="field-value" id="pitch-value">1.0x</span>
+            </span>
+            <input type="range" class="field__control field__control--range" id="pitch" min="0.5" max="2" step="0.25" value="1">
+        </label>
+        </div>
+
+        <div class="buttons">
+            <button id="play-btn" class="button button-play">Play</button>
+            <button id="pause-btn" class="button" disabled>Pause</button>
+            <button id="resume-btn" class="button" disabled>Resume</button>
+            <button id="stop-btn" class="button button-stop" disabled>Stop</button>
+        </div>
+        <div class="status" id="status">
+            Ready.
+        </div>
+        </section>
+
+        <section class="card card-info">
+            <h3 class="info-title">How it works!</h3>
+            <p class="info">This simple app uses your browser's built-in Web Speech API to convert text into speech. Different browsers and devices
+            offer different voices.</p>
+            
+            <p class="info">Try changing the voice, rate, and pitch to see how it sounds. This project is kept intentionally simple so it's great
+            for learning and for your portfolio.</p>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Built with Html,CSS and Javascript</p>
+    </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
