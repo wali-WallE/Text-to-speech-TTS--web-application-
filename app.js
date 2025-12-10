@@ -115,3 +115,80 @@ function speak(){
     window.speechSynthesis.speak(currentUtterance);
 }
 
+function pauseSpeech() {
+    if (!supportsSpeechSynthesis) return;
+    if(window.speechSynthesis.speaking && !window.speechSynthesis.paused){
+        window.speechSynthesis.pause();
+        setStatus("Paused!");
+        CurrentState("stopped");
+    }
+}
+
+function ResumePlaying() {
+    if (!supportsSpeechSynthesis) return;
+    if(window.speechSynthesis.paused){
+        window.speechSynthesis.resume();
+        setStatus("Speaking...");
+        CurrentState("playing");
+    }
+}
+
+function StopSpeech() {
+    if (!supportsSpeechSynthesis) return;
+    if(window.speechSynthesis.speaking){
+        window.speechSynthesis.cancel();
+        setStatus("Stopped.");
+        CurrentState("idle");
+        textinput.value = "";
+    }
+}
+
+function updateRateLabel() {
+  ratevalue.textContent = `${parseFloat(rate.value).toFixed(1)}x`;
+}
+
+function updatePitchLabel() {
+  pitchvalue.textContent = parseFloat(pitch.value).toFixed(1);
+}
+
+playbtn.addEventListener("click", speak);
+pausebtn.addEventListener("click", pauseSpeech);
+resumebtn.addEventListener("click", ResumePlaying);
+stopbtn.addEventListener("click", StopSpeech);
+
+
+rate.addEventListener("input", updateRateLabel);
+pitch.addEventListener("input", updatePitchLabel);
+
+textinput.addEventListener("keydown", (event) => {
+    if(event.key === "Enter" && (event.ctrlKey || event.metaKey)){
+        event.preventDefault();
+        speak();
+    }
+});
+
+function init(){
+    if(!supportsSpeechSynthesis){
+        setStatus("Your browser does not support the web API model!");
+        playbtn.disabled = true;
+        pausebtn.disabled = true;
+        stopbtn.disabled = true;
+        resumebtn.disabled = true;
+        return;
+    }
+
+    setStatus("Ready. Type some text and press Play");
+    CurrentState("idle");
+    updateRateLabel();
+    updatePitchLabel();
+    
+    
+    populateVoices();
+
+    if (typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
+        window.speechSynthesis.onvoiceschanged = populateVoices;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
