@@ -8,10 +8,14 @@
 </head>
 <body>
     <div class="app">
+
+        <!-- // header section -->
         <header class="app-header">
             <h1 class="app-title">Text to Speech!</h1>
             <p class="app-subtitle">Enter text to convert to speech</p>
         </header>
+
+        <!-- main card functionality -->
 
         <main class="app-main">
         <section class="area card">
@@ -28,8 +32,8 @@
             <span class="field-hint" id="voice-hint">Voices depend on your browser settings</span>
         </label>
         
+        <!-- rate and pitch controls -->
         <label class="field">
-
             <span class="field-label">Rate
             <span class="field-value" id="rate-value">1.0x</span>
             </span>
@@ -44,6 +48,7 @@
         </label>
         </div>
 
+        <!-- buttons for controlling speech -->
         <div class="buttons">
             <button id="play-btn" class="button button-play">Play</button>
             <button id="pause-btn" class="button" disabled>Pause</button>
@@ -55,6 +60,7 @@
         </div>
         </section>
 
+        <!-- // second card (info) -->
         <section class="card card-info">
             <h3 class="info-title">How it works!</h3>
             <p class="info">This simple app uses your browser's built-in Web Speech API to convert text into speech. Different browsers and devices
@@ -65,6 +71,7 @@
         </section>
     </main>
 
+    <!-- footer for additonal info -->
     <footer class="app-footer">
         <p>Built with Html,CSS and Javascript</p>
     </footer>
