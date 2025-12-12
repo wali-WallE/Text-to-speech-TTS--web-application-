@@ -1,5 +1,6 @@
 const supportsSpeechSynthesis = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 
+// button and input references
 const textinput = document.getElementById("text-input");
 const voiceselect = document.getElementById("voice-select");
 const voiceHint = document.getElementById("voice-hint");
@@ -20,6 +21,7 @@ function setStatus(message){
     stat.textContent = message;
 }
 
+// function for managing button states
 function CurrentState(state){
     if(state === "idle"){
         playbtn.disabled = false;
@@ -41,6 +43,7 @@ function CurrentState(state){
     }
 }
 
+// function to populate available voices from Api
 function populateVoices(){
     if (!supportsSpeechSynthesis) return;
 
@@ -72,6 +75,7 @@ function populateVoices(){
     
 }
 
+// FUNCTION TO START SPEAKING
 function speak(){
     if (!supportsSpeechSynthesis) {
     setStatus("Sorry, your browser does not support speech synthesis.");
@@ -115,6 +119,7 @@ function speak(){
     window.speechSynthesis.speak(currentUtterance);
 }
 
+// FUNCTION TO PAUSE SPEAKING
 function pauseSpeech() {
     if (!supportsSpeechSynthesis) return;
     if(window.speechSynthesis.speaking && !window.speechSynthesis.paused){
@@ -124,6 +129,7 @@ function pauseSpeech() {
     }
 }
 
+// FUNCTION TO RESUME SPEAKING
 function ResumePlaying() {
     if (!supportsSpeechSynthesis) return;
     if(window.speechSynthesis.paused){
@@ -133,6 +139,7 @@ function ResumePlaying() {
     }
 }
 
+// FUNCTION TO STOP SPEAKING
 function StopSpeech() {
     if (!supportsSpeechSynthesis) return;
     if(window.speechSynthesis.speaking){
@@ -143,6 +150,7 @@ function StopSpeech() {
     }
 }
 
+
 function updateRateLabel() {
   ratevalue.textContent = `${parseFloat(rate.value).toFixed(1)}x`;
 }
@@ -151,6 +159,7 @@ function updatePitchLabel() {
   pitchvalue.textContent = parseFloat(pitch.value).toFixed(1);
 }
 
+// Event Listeners
 playbtn.addEventListener("click", speak);
 pausebtn.addEventListener("click", pauseSpeech);
 resumebtn.addEventListener("click", ResumePlaying);
@@ -167,6 +176,7 @@ textinput.addEventListener("keydown", (event) => {
     }
 });
 
+// Initialization function
 function init(){
     if(!supportsSpeechSynthesis){
         setStatus("Your browser does not support the web API model!");
