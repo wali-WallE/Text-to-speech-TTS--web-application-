@@ -17,7 +17,7 @@ This project allows users to enter text and convert it into natural sounding spe
 ---
 
 ## 🖥️ Live Demo
-*(Will be added tomorrow — GitHub Pages deployment pending)*
+*(Live demo deployed using GitHub Pages)*
 
 ---
 
